@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   name: 'OrdaOrders',
   data() {
@@ -48,15 +46,19 @@ export default {
     fetchOrders() {
       console.log('Fetching orders from:', process.env.VUE_APP_ORDERS_API); 
       
-      axios.interceptors.request.use(request => {
-        // Force HTTPS by replacing 'http://' with 'https://' in the URL of every request
-        request.url = request.url.replace(/^http:\/\//i, 'https://');
-        return request;
-      });
+      const url = new URL(process.env.VUE_APP_ORDERS_API);
+      // Force HTTPS by replacing the protocol if necessary
+      url.protocol = 'https:';
 
-      axios.get(process.env.VUE_APP_ORDERS_API)
+      fetch(url.toString())
         .then(response => {
-          this.orders = response.data;
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          this.orders = data;
         })
         .catch(error => console.error('Error fetching orders:', error));
     }
