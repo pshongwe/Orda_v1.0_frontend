@@ -47,7 +47,13 @@ export default {
   methods: {
     fetchOrders() {
       console.log('Fetching orders from:', process.env.VUE_APP_ORDERS_API); 
-      axios.defaults.baseURL = process.env.VUE_APP_ORDERS_API;
+      
+      axios.interceptors.request.use(request => {
+        // Force HTTPS by replacing 'http://' with 'https://' in the URL of every request
+        request.url = request.url.replace(/^http:\/\//i, 'https://');
+        return request;
+      });
+
       axios.get(process.env.VUE_APP_ORDERS_API)
         .then(response => {
           this.orders = response.data;
