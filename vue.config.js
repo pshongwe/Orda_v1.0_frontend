@@ -20,15 +20,6 @@ module.exports = defineConfig({
     port: 8080,   // Set the port to 8080
     https: true, // Enable HTTPS
     host: 'localhost',
-    proxy: {
-      // Setup proxy rules
-      '/api': {
-        target: `https://orda-v10-backend-${process.env.ENV}.onrender.com`, // Proxy all requests for /api to your backend
-        changeOrigin: true,  // Needed for virtual hosted sites
-        secure: true,       // If the backend uses self-signed certificates
-        pathRewrite: { '^/api': '' }, // Remove /api from the path
-      }
-    },
     headers: {
       // Additional headers configuration
       'Access-Control-Allow-Origin': '*', // Allow all origins (CORS)
