@@ -3,7 +3,7 @@
     <div class="landing">
       <h1>Welcome to OrdaSys</h1>
       <p>Manage your orders efficiently and effortlessly.</p>
-      <router-link to="/orders" class="btn btn-primary">Get Started</router-link>
+      <router-link to="/restaurant" class="btn btn-primary">Get Started</router-link>
     </div>
   </template>
   

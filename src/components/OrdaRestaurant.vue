@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +7,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <title>Self Service Order</title>
     </head>
-
+<main id="app">
     <body> 
-            
             <section class="items">
                 <h4>Pick your items</h4>
                 <div class="product selected">
@@ -165,6 +164,7 @@
 
 
     </body> 
+</main>
   </div> 
 </template>
 
