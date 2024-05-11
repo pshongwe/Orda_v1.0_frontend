@@ -47,6 +47,7 @@ export default {
   methods: {
     fetchOrders() {
       console.log('Fetching orders from:', process.env.VUE_APP_ORDERS_API); 
+      axios.defaults.baseURL = process.env.VUE_APP_ORDERS_API;
       axios.get(process.env.VUE_APP_ORDERS_API)
         .then(response => {
           this.orders = response.data;
