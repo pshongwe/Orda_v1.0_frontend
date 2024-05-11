@@ -1,17 +1,17 @@
 <template>
-    <div class="orders">
+    <div class="restaurant">
       <img alt="OrdaSys Logo" src="@/assets/logo.png">
-      <Orders />
+      <Restaurant />
     </div>
   </template>
   
   <script>
-  import Orders from '@/components/OrdaOrders.vue'
+  import Restaurant from '@/components/OrdaRestaurant.vue'
   
   export default {
-    name: 'OrdersView',
+    name: 'RestaurantView',
     components: {
-        Orders
+        Restaurant
     }
   }
   </script>

@@ -6,11 +6,10 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import About from '@/components/OrdaAbout.vue'
 
 export default {
-  name: 'HomeView',
+  name: 'AboutView',
   components: {
     About
   }
