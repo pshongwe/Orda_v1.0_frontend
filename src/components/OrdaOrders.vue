@@ -39,29 +39,22 @@ export default {
       orders: []
     };
   },
-  mounted() {
-    this.fetchOrders();
-  },
   methods: {
     fetchOrders() {
-      console.log('Fetching orders from:', process.env.VUE_APP_ORDERS_API); 
-      
-      const url = new URL(process.env.VUE_APP_ORDERS_API);
-      // Force HTTPS by replacing the protocol if necessary
-      url.protocol = 'https:';
-
-      fetch(url.toString())
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          this.orders = data;
-        })
-        .catch(error => console.error('Error fetching orders:', error));
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', process.env.VUE_APP_ORDERS_API, true);
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          this.orders = JSON.parse(xhr.responseText);
+        } else if (xhr.readyState === 4 && xhr.status !== 200) {
+          console.error('Error fetching orders:', xhr.statusText);
+        }
+      };
+      xhr.send();
     }
+  },
+  mounted() {
+    this.fetchOrders();
   }
 }
 </script>
