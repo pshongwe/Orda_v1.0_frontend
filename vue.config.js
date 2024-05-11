@@ -16,15 +16,6 @@ module.exports = defineConfig({
   devServer: {
     client: {
       progress: true,
-    },
-    port: 8080,   // Set the port to 8080
-    https: true, // Enable HTTPS
-    host: 'localhost',
-    headers: {
-      // Additional headers configuration
-      'Access-Control-Allow-Origin': '*', // Allow all origins (CORS)
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
     }
   },
   transpileDependencies: true
