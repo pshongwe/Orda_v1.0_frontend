@@ -1,6 +1,6 @@
 <!-- components/About.vue -->
 <template>
-    <div>
+    <div id="app">
       <h1>About OrdaSys</h1>
       <p>This page provides information about the OrdaSys order management system.</p>
     </div>
