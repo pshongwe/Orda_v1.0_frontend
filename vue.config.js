@@ -22,7 +22,7 @@ module.exports = defineConfig({
       '/api': {
         target: `https://orda-v10-backend-${process.env.ENV}.onrender.com`, // Proxy all requests for /api to your backend
         changeOrigin: true,  // Needed for virtual hosted sites
-        secure: false,       // If the backend uses self-signed certificates
+        secure: true,       // If the backend uses self-signed certificates
         pathRewrite: { '^/api': '' }, // Remove /api from the path
       }
     },
