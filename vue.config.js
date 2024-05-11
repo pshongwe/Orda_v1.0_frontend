@@ -14,6 +14,9 @@ module.exports = defineConfig({
     ]
   },
   devServer: {
+    client: {
+      progress: true,
+    },
     port: 8080,   // Set the port to 8080
     https: true, // Enable HTTPS
     host: 'localhost',
