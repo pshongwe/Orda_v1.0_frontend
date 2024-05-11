@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <img alt="OrdaSys Logo" src="@/assets/logo.png">
     <About />
   </div>
 </template>
