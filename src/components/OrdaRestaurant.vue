@@ -7,9 +7,7 @@
         <title>Self Service Order</title>
     </head>
 
-    <body>
-        
-        <main id="app">
+    <body> 
             
             <section class="items">
                 <h4>Pick your items</h4>
@@ -164,8 +162,12 @@
                 </table>
             </section>
 
-        </main>
 
-        <!-- <script src="scripts.js"></script> -->
     </body>  
 </template>
+
+<script>
+export default {
+  name: 'OrdaRestaurant'
+}
+</script>

@@ -1,17 +1,28 @@
 <template>
-  <img src="@/assets/logo.png" alt="OrdaSys Logo" class="logo" @mouseover="hover = true" @mouseleave="hover = false">
-  <OrdaOrders />
+     <div class="sidebar">
+      <router-link to="/">Home</router-link>
+      <br/>
+      <router-link to="/orders">Orders</router-link>
+      <br/>
+      <router-link to="/about">About</router-link>
+      <!-- <router-link to="/restaurant">Restaurant</router-link> -->
+  </div>
+  <div class="main-content">
+    <img src="@/assets/logo.png" alt="OrdaSys Logo" class="logo" @mouseover="hover = true" @mouseleave="hover = false">
+   <div>
+    <h3><em>Streamlining Orders With Seamless Efficiency...</em></h3>
+   </div>
+    <Orders/>
+  </div>
 </template>
 
 <script>
-import OrdaOrders from './components/OrdaOrders.vue';
-// import Restaurant from './components/OrdaRestaurant.vue'
+import Orders from './components/OrdaOrders.vue';
 
 export default {
   name: 'App',
   components: {
-    // Restaurant,
-    OrdaOrders
+    Orders
   }
 }
 </script>
@@ -32,6 +43,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
 }
 body {
     margin: 0;
@@ -133,5 +145,30 @@ section.summary table tbody tr:last-of-type th {
     padding-top: 4px;
 }
 
+.sidebar {
+  width: 200px; /* Fixed sidebar width */
+  background-color: #f4f4f4;
+  padding: 20px;
+  height: 100vh; /* Full viewport height */
+  box-sizing: border-box; /* Includes padding in the width */
+  position: fixed; /* Fixed position */
+  overflow-y: auto; /* Allows scrolling */
+}
+
+.main-content {
+  margin-left: 200px; /* Equal to sidebar width */
+  flex-grow: 1;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100px; /* Smaller width for mobile */
+  }
+
+  .main-content {
+    margin-left: 100px; /* Adjust margin to new sidebar width */
+  }
+}
 
 </style>
