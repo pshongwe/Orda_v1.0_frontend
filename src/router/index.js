@@ -1,15 +1,15 @@
 // router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../App.vue'
 import Orders from '@/components/OrdaOrders.vue';
 import About from '@/components/OrdaAbout.vue';
+import LandingPage from '@/components/LandingPage.vue';
 // import Restaurant from '@components/OrdaRestaurant';
 
 const routes = [
     {
         path: '/',
-        name: 'Home',
-        component: Home
+        name: 'Landing',
+        component: LandingPage
     },
     {
         path: '/orders',

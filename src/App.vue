@@ -1,28 +1,27 @@
 <template>
      <div class="sidebar">
-      <router-link to="/">Home</router-link>
-      <br/>
       <router-link to="/orders">Orders</router-link>
       <br/>
       <router-link to="/about">About</router-link>
-      <!-- <router-link to="/restaurant">Restaurant</router-link> -->
   </div>
   <div class="main-content">
     <img src="@/assets/logo.png" alt="OrdaSys Logo" class="logo" @mouseover="hover = true" @mouseleave="hover = false">
    <div>
     <h3><em>Streamlining Orders With Seamless Efficiency...</em></h3>
    </div>
-    <Orders/>
+  <div>
+    <Landing/>
+  </div>
   </div>
 </template>
 
 <script>
-import Orders from './components/OrdaOrders.vue';
+import Landing from './components/LandingPage.vue';
 
 export default {
   name: 'App',
   components: {
-    Orders
+    Landing
   }
 }
 </script>
