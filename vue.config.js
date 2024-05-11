@@ -7,7 +7,7 @@ module.exports = defineConfig({
       new webpack.DefinePlugin({
         'process.env.VUE_APP_ORDERS_API': JSON.stringify(
           process.env.ENV === 'prod' || process.env.ENV === 'dev'
-            ? `https://orda-v10-backend-${ENV}.onrender.com/api/v1/orders`
+            ? `https://orda-v10-backend-${process.env.ENV}.onrender.com/api/v1/orders`
             : 'http://localhost:5000/api/v1/orders'
         )
       })
