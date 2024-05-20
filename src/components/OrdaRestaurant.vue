@@ -2,7 +2,7 @@
     <div>
       <main id="app">
         <section class="items">
-          <h4>Pick your items</h4> 
+          <h4>Pick your items</h4>
           <div v-for="product in products" :key="product.name"
                class="product"
                @click="toggleActive(product)"
@@ -42,6 +42,7 @@
               </tr>
             </tbody>
           </table>
+          <button @click="submitOrder" class="btn btn-primary">Submit Order</button>
         </section>
       </main>
     </div> 
@@ -58,63 +59,72 @@
             "name": "Big Mac",
             "price": 5.99,
             "active": false,
-            "quantity": 1
+            "quantity": 1,
+            "item_id": "101"
           },
           {
             "photo": "/img/mc-chicken.png",
             "name": "Mc Chicken",
             "price": 4.99,
             "active": false,
-            "quantity": 1
+            "quantity": 1,
+            "item_id": "100"
           },
           {
             "photo": "/img/double-cb.png",
             "name": "Double Cheese Burger",
             "price": 2.99,
             "active": false,
-            "quantity": 1
+            "quantity": 1,
+            "item_id": "103"
           },
           {
             "photo": "/img/fries.png",
             "name": "Fries",
             "price": 2.99,
             "active": false,
-            "quantity": 1
+            "quantity": 1,
+            "item_id": "108"
           },
           {
             "photo": "/img/nuggets.png",
             "name": "Mc Nuggets",
             "price": 3.49,
             "active": false,
-            "quantity": 1
+            "quantity": 1,
+            "item_id": "102"
           },
           {
             "photo": "/img/salad.png",
             "name": "Salad",
             "price": 2.79,
             "active": false,
-            "quantity": 1
+            "quantity": 1,
+            "item_id": "104"
           },
           {
             "photo": "/img/cola.png",
             "name": "Coke",
             "price": 1.99,
             "active": false,
-            "quantity": 1
+            "quantity": 1,
+            "item_id": "100"
           },
           {
             "photo": "/img/lipton.png",
             "name": "Ice Tea",
             "price": 1.99,
             "active": false,
-            "quantity": 1
+            "quantity": 1,
+            "item_id": "106"
           },
           {
             "photo": "/img/water.png",
             "name": "Water",
             "price": 1.49,
             "active": false,
-            "quantity": 1
+            "quantity": 1,
+            "item_id": "107"
           }
         ]
       }
@@ -132,15 +142,57 @@
         return this.activeProducts.reduce((acc, product) => {
           return acc + product.price * product.quantity;
         }, 0).toFixed(2);
+      },
+      submitOrder() {
+        const order = {
+          customer_id: 'c1', // This should be dynamically set
+          items: this.activeProducts.map(product => ({
+            item_id: product.item_id, // This should be the actual item ID
+            name: product.name,
+            quantity: product.quantity,
+            price: product.price
+          })),
+          total: parseFloat(this.total()),
+          date: new Date().toISOString(),
+          status: 'pending'
+        };
+        const url = new URL(process.env.VUE_APP_ORDERS_API);
+        fetch(url.toString(), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(order)
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Order submitted:', data);
+        })
+        .catch(error => {
+          console.error('Error submitting order:', error);
+        });
       }
     }
   }
   </script>
-  
+
   <style scoped>
   body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
+  }
+
+  .btn-primary {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2980b9;
   }
   
   main > section.items h4 {
